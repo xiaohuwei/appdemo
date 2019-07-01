@@ -4,11 +4,11 @@
            <img src='../assets/images/ic_tab_home_active.png' slot="activeImg">
            <img src='../assets/images/ic_tab_home_normal.png' slot="normalImg">
         </Item>
-        <Item txt='豆瓣' mark='audio' :sel='selected' @change='getval'>
+        <Item txt='电影' mark='audio' :sel='selected' @change='getval'>
          <img src='../assets/images/ic_tab_subject_active.png' slot="activeImg">
          <img src='../assets/images/ic_tab_subject_normal.png' slot="normalImg">
         </Item>
-        <Item txt='大麦网' mark='broadcast' :sel='selected' @change='getval'>
+        <Item txt='演唱会' mark='broadcast' :sel='selected' @change='getval'>
          <img src='../assets/images/ic_tab_status_active.png' slot="activeImg">
          <img src='../assets/images/ic_tab_status_normal.png' slot="normalImg">
         </Item>

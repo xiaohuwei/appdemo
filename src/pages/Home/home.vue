@@ -22,17 +22,23 @@
     </div>
 </Banner>  
 <Cell title='聚焦当下' :hot='true'></Cell>
-
+<van-list
+  v-model="loading"
+  :finished="finished"
+  finished-text="没有更多了"
+  @load="onLoad"
+>
 <List v-for="(item,index) in arr" :url='"http:"+item.image_url' :key='index'>
-    <span slot='title' @click='tishi(item.item_id)'>{{item.title}}</span>
+    <span slot='title' @click='tishi(item.item_id)'>{{item.title|title}}</span>
     <span slot='desc' @click='tishi(item.item_id)'>来源:{{item.source}}</span>
 </List>
-
+</van-list>
 </van-pull-refresh>
  <div style="height:80px;width:100%"></div> 
 </div>
 </template>
 <script>
+
 import Cell from '../../components/cell'
 import Myheader from '../../components/header'
 import Banner from '../../components/banner'
@@ -42,7 +48,9 @@ export default {
         return{
         arr:[],
         count: 0,
-        isLoading: false
+        isLoading: false,
+        loading: false,
+        finished: false
         }
     },
     components:{
@@ -52,24 +60,45 @@ export default {
         List
     },
     created() {
-        this.fn();
+         this.fn();
     },
     methods: {
         fn(){
-                this.toutiao()
-                .then(res=>{this.arr=res;})//api.js里面挂载到原型的方法
+        this.toutiao()
+        .then(res=>this.arr=res)//api.js里面挂载到原型的方法
         },
         tishi(i){
-               this.$router.push('/detail/'+i)
+        this.$router.push('/detail/'+i)
         },
-    onRefresh() {
-      setTimeout(() => {
+        onRefresh() {
+        setTimeout(() => {
         this.fn();
-        this.$toast('好啦，给您更新了数据哟~');
+        this.$toast.success('更新成功！');
         this.isLoading = false;
         this.count++;
       }, 500);
-    }
+    },
+        onLoad() {
+      // 异步更新数据
+      setTimeout(() => {
+        for (let i = 0; i < 6; i++) {
+        this.toutiao()
+        .then(res=>{
+            res.forEach((v,i) => {
+                this.arr.push(res[i]);
+            });
+        })
+        ;
+        }
+        // 加载状态结束
+        this.loading = false;
+        // 数据全部加载完成
+        if (this.arr.length >= 60) {//默认最多加载60条
+          this.finished = true;
+        }
+      }, 1000);
+      }
+    
     },
 }
 </script>

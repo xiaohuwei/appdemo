@@ -1,6 +1,8 @@
 # 基于Vue的AppDemo
 
-![](<https://img.shields.io/badge/vue-2.5-green.svg?style=for-the-badge&logo=appveyor>)
+![](<https://img.shields.io/badge/author-xiaohuwei-red.svg?style=for-the-badge&logo=appveyor>)
+
+[![AppVeyor](https://img.shields.io/appveyor/ci/doyoe/css-handbook.svg)](https://ci.appveyor.com/project/doyoe/css-handbook) [![AppVeyor](https://img.shields.io/static/v1.svg?label=lisense&message=Apache-2.0&color=success&?style=flat&logo=appveyor)](https://xiaohuwei.cn)  [![AppVeyor](https://img.shields.io/static/v1.svg?label=link&message=996.icu&color=orange)](https://996.icu/#/zh_CN)
 
 > 一个基于VUE的app项目
 
@@ -21,6 +23,10 @@ npm run dev
 
 ![](https://i.loli.net/2019/06/26/5d12cedb0ce5e14897.png)
 
+## 电影
+
+![](https://i.loli.net/2019/07/01/5d1971664e59b62963.png)
+
 ## 个人中心
 
 ![](https://i.loli.net/2019/06/26/5d12cf040599273197.png)
@@ -31,7 +37,8 @@ npm run dev
 
 ##  功能
 
-- 使用vant框架进行下拉刷新  每次刷新随机获取今日头条新闻 
+- 使用vant框架进行下拉刷新  每次刷新随机获取今日头条新闻  首页实现无限懒加载
+- 电影栏目增加动态真实评分
 - Tabbar 是用手写的 利用了父子组件的互相传值到达高亮效果
 - 文章详情使用Vant框架的选项卡功能
 - 首页到文章详情页使用了二级路由传参
