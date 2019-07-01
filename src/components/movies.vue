@@ -2,9 +2,10 @@
     <div class="hello">
         <div class="box" v-for='(v,k) in arr' :key='k'>
                     <img :src='"https://blog.xiaohuwei.cn/sina.php?url="+v.images.small' alt="">
-                    <span class="tit">{{v.title}}</span>   <span class="red">{{v.rating.average}}</span>
+                    <span class="tit">{{v.title|movie}}</span>   <p class="red">{{v.rating.average}}</p>
+<van-rate v-model="value1[k]" allow-half void-icon="star" void-color="#eee" :size="15" readonly />
         </div>
- <div style="height:70px;width:100%"></div>
+ <div style="height:75px;width:100%"></div>
     </div>
 </template>
 <script>
@@ -21,6 +22,8 @@ export default {
     data(){
         return{
         arr:[],
+        value:1.5,
+        value1:[]
         }
     },
     created() {
@@ -28,7 +31,12 @@ export default {
     },
     methods: {
         fn(){
-            douban('https://douban.uieee.com/v2/movie/in_theaters',18).then(res=>{this.arr=res})
+            douban('https://douban.uieee.com/v2/movie/in_theaters',18).then(res=>{this.arr=res;
+            res.forEach(v => {
+                this.value1.push(v.rating.average/2);
+            });
+          
+            })
         }
     },
 }
@@ -37,13 +45,14 @@ export default {
 <style>
 .box img{
     width:100px;
+    height: 148px;
 }
 .box{
     width: 100px;
     padding: 10px;
     height: 150px;
     display: inline-block;
-    margin-top: 28px;
+    padding-bottom:55px; 
    
 }
 .hello{

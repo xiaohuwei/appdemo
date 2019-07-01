@@ -1,8 +1,13 @@
 <template>
 <div>
- <Myheader txt='详情'>
-   <span slot="tui" @click='tui'><van-icon name="arrow-left" /></span>
-</Myheader>
+<van-nav-bar
+  title="文章详情页"
+  left-text="返回"
+  
+  :left-arrow='bol'
+  @click-left="tui"
+ 
+/>
 
 <van-pull-refresh v-model="isLoading" @refresh="onRefresh" pulling-text='这是下拉刷新哟' loosing-text='释放让我来刷新~'>
           <van-tabs v-model="active">
@@ -28,13 +33,14 @@
     </div>
 </template>
 <script>
-import Myheader from '../../components/header'
+//import Myheader from '../../components/header'
 export default {
     components:{
-        Myheader
+       // Myheader
     },
     data(){
         return{
+        bol:true,
         arr:[],
         index:'',
         count: 0,
@@ -95,5 +101,9 @@ export default {
 .pgc-img-caption{
   text-align: center!important;
 }
-
+.van-icon-arrow-left {
+    
+    
+    left: 0px;
+}
 </style>

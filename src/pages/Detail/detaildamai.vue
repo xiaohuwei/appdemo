@@ -1,8 +1,13 @@
 <template>
   <div class="goods">
-<Myheader txt='详情'>
-   <span slot="tui"  @click='tui'><van-icon name="arrow-left" /></span>
-</Myheader>
+<van-nav-bar
+  title="商品详情页"
+  left-text="返回"
+:fixed='bol'
+  :left-arrow='bol'
+  @click-left="tui"
+ 
+/>
 <van-pull-refresh v-model="isLoading" @refresh="onRefresh" pulling-text='这是下拉刷新哟' loosing-text='释放让我来刷新~'>
     <van-swipe class="goods-swipe" :autoplay="3000">
       <van-swipe-item v-for="v in arr" :key="v">
@@ -96,7 +101,8 @@ export default {
         index:this.$route.params.id,
         count: 0,
         isLoading: false,
-        activeName: ''
+        activeName: '',
+         bol:true
     };
   },
       mounted(){
@@ -159,5 +165,10 @@ export default {
   &-tag {
     margin-left: 5px;
   }
+}
+.van-icon-arrow-left {
+    
+    
+    left: 0px;
 }
 </style>
